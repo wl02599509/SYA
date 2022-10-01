@@ -8,15 +8,16 @@ class AddressController < ApplicationController
   end
   
   def new
+    @address = Address.new
   end
   
-  # def create
-  #   if .save
-  #     redirect_to , notice:''
-  #   else
-  #     render :new
-  #   end
-  # end
+  def create
+    if @address.save(address_params)
+      redirect_to address_index_path, notice:'You shortened your URL successfully.'
+    else
+      render :new
+    end
+  end
   
   # def edit
   # end
@@ -33,11 +34,11 @@ class AddressController < ApplicationController
   #   redirect_to , notice: ''
   # end
   
-  # private
-  # def params
-  #   params.require().permit()
-  # end
+  private
+  def address_params
+    params.require(:address).permit()
+  end
   
-  # def find
-  # end
+  def find
+  end
 end
