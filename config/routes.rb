@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  root to: "home#homepage"
+  devise_for :users, controllers: { sessions: 'users/sessions' }
   resources :address
-  get '/', to: "home#homepage"
 end

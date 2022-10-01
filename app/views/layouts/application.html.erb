@@ -12,8 +12,23 @@
   </head>
 
   <body>
-    <main>
-      <%= yield %>
-    </main>
+    <section>
+      <header class="flex justify-end bg-blue-200">
+        <% if user_signed_in? %>
+          <span class="mr-6 px-2 py-1 rounded-md bg-yellow-300"><%= current_user.email %></span>
+          <span class="px-2 py-1 rounded-md bg-yellow-300 hover:bg-orange-300"><%= button_to 'Sign out', destroy_user_session_path %></span>
+        <% else %>
+          <span class="mr-6 px-2 py-1 rounded-md bg-yellow-300 hover:bg-orange-300"><%= link_to 'Sign In', new_user_session_path %></span>
+          <span class="px-2 py-1 rounded-md bg-yellow-300 hover:bg-orange-300"><%= link_to 'Sign Up', new_user_registration_path %></span>
+        <% end %>
+      </header>
+      <main class="mt-5">
+        <%= yield %>
+      </main>
+      <footer class="bg-yellow-400">
+        <h1 class="text-center text-xl hover:decoration-orange-400"><%= link_to 'SYA', root_path %></h1>
+        <p class="text-center text-sm ">Copyright © 2022 Mike Lai. All rights reserved.</p>
+      </footer>
+    </section>
   </body>
 </html>
