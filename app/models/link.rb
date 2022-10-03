@@ -15,9 +15,16 @@ class Link < ActiveRecord::Base
     SecureRandom.uuid[3..10]
   end
 
+  def self.same_slug?(slug)
+    where("slug = ?", slug).present?
+  end
+
   def self.shorten(url, slug = random_charts)
-    @link = Link.new(url: url, slug: slug)
-    if @link.save
+    if Link.same_slug?(slug)
+      render :new
+    else
+      @link = Link.new(url: url, slug: slug)
+      @link.save
       shortened_url = @link.short
       @link.update_attribute(:shortened_url, shortened_url)
     end
