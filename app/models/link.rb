@@ -19,8 +19,8 @@ class Link < ActiveRecord::Base
     where("slug = ?", slug).present?
   end
 
-  def self.shorten(url, slug = random_charts)
-      @link = Link.create(url: url, slug: slug)
+  def self.shorten(url, slug, user_id)
+      @link = Link.create(url: url, slug: slug, user_id: user_id)
       shortened_url = @link.short
       @link.update_attribute(:shortened_url, shortened_url)
   end

@@ -1,17 +1,18 @@
 class LinksController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @link = Link.new
-    @links = Link.all
+    @links = Link.where('user_id = ?', current_user.id)
   end
 
   def create
-    if Link.same_slug?(params[:link][:slug])
-      render :index
+    if params[:link][:slug] == ""
+      Link.shorten(params[:link][:url], Link.random_charts, current_user.id)
     else
-      @link = Link.shorten(params[:link][:url], params[:link][:slug])
-      redirect_to links_path
+      Link.shorten(params[:link][:url], params[:link][:slug], current_user.id)
     end
+    redirect_to links_path
   end
 
   def destination

@@ -1,21 +1,18 @@
 <div class="m-5">
-  <% if @link.errors.any? %>
-    <%= @link.errors.full_messages %>
-  <% end %>
   <%= form_for @link do |form| %>
     URL: <%= form.text_field :url %>
     Customize:  <%= form.text_field :slug %>
     <button><%= form.submit %></button>
   <% end %>
 </div>
-<div class="m-5">
-  <h2>Your Link</h2>
+<h2 class="ml-5">Your Link</h2>
+<div class="m-5 bg-blue-200 w-2/6">
   <div>
     <% @links.each do |links| %>
-      <div class="my-5 p-5 border-2 border-red-300 max-w-fit">
+      <div class="p-5 border-b-2">
         <span class="block"><%= links.created_at.strftime("%Y-%m-%d") %></span>
         <span><%= links.shortened_url %></span>
-        <button><%= link_to 'delete', link_path(links), method: 'delete', data:{confirm: 'Are you sure?'} %></button>
+        <button class="block border-2 border-slate-500"><%= link_to 'delete', link_path(links), method: 'delete', data:{confirm: 'Are you sure?'} %></button>
       </div>
     <% end %>
   </div>
