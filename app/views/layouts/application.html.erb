@@ -5,12 +5,37 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <section class="w-full">
+      <header class="text-lg">
+        <nav class="relative flex items-center justify-between mx-auto py-5 bg-blue-200">
+          <h1 class="px-2 text-center font-bold bg-yellow-300 hover:bg-orange-300"><%= link_to 'SYA | Shorten Your Address', root_path %></h1>
+          <div>
+            <% if user_signed_in? %>
+            <div class="flex items-center">
+              <span class="mr-6"><%= current_user.email %></span>
+              <span class="px-2 py-1 bg-yellow-300 hover:bg-orange-300"><%= button_to 'Sign out', destroy_user_session_path, method: 'delete' %></span>
+            </div>
+            <% else %>
+              <span class="mr-6 px-2 py-1 bg-yellow-300 hover:bg-orange-300"><%= link_to 'Sign In', new_user_session_path %></span>
+              <span class="px-2 py-1 bg-yellow-300 hover:bg-orange-300"><%= link_to 'Sign Up', new_user_registration_path %></span>
+            <% end %>
+          </div>
+        </nav>
+      </header>
+      <main class="my-5">
+        <%= yield %>
+      </main>
+      <footer class="bg-yellow-400">
+        <h1 class="text-center text-xl hover:decoration-orange-400"><%= link_to 'SYA', root_path %></h1>
+        <p class="text-center text-sm ">Copyright © 2022 Mike Lai. All rights reserved.</p>
+      </footer>
+    </section>
   </body>
 </html>
