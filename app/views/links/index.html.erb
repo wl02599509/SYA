@@ -1,5 +1,22 @@
-<h2>Your Link</h2>
-<% @links.each do |links| %>
-  <%= links.url %>
-  <%= links.shortened_url %>
-<% end %>
+<div class="m-5">
+  <% if @link.errors.any? %>
+    <%= @link.errors.full_messages %>
+  <% end %>
+  <%= form_for @link do |form| %>
+    URL: <%= form.text_field :url %>
+    Customize:  <%= form.text_field :slug %>
+    <button><%= form.submit %></button>
+  <% end %>
+</div>
+<div class="m-5">
+  <h2>Your Link</h2>
+  <div>
+    <% @links.each do |links| %>
+      <div class="my-5 p-5 border-2 border-red-300 max-w-fit">
+        <span class="block"><%= links.created_at.strftime("%Y-%m-%d") %></span>
+        <span><%= links.shortened_url %></span>
+      </div>
+    <% end %>
+  </div>
+</div>
+

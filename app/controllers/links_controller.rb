@@ -1,19 +1,20 @@
 class LinksController < ApplicationController
 
   def index
+    @link = Link.new
     @links = Link.all
   end
 
-  def new
-    @link = Link.new
-  end
-
   def create
-    @link = Link.shorten(params[:link][:url], params[:link][:slug])
-    redirect_to links_path
+    if Link.same_slug?(params[:link][:slug])
+      render :index
+    else
+      @link = Link.shorten(params[:link][:url], params[:link][:slug])
+      redirect_to links_path
+    end
   end
 
-  def show
+  def destination
     @link = Link.find_by_slug(params[:slug]) 
     if @link.nil?
       render 'errors/404', status: 404 
