@@ -15,6 +15,7 @@
       <div class="my-5 p-5 border-2 border-red-300 max-w-fit">
         <span class="block"><%= links.created_at.strftime("%Y-%m-%d") %></span>
         <span><%= links.shortened_url %></span>
+        <button><%= link_to 'delete', link_path(links), method: 'delete', data:{confirm: 'Are you sure?'} %></button>
       </div>
     <% end %>
   </div>
