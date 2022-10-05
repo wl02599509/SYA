@@ -1,7 +1,7 @@
 class Link < ActiveRecord::Base
   require 'securerandom'
   # before_validation :random_charts
-  after_save :shortened_url
+  after_commit :shorten_url
 
   belongs_to :user
 
@@ -26,7 +26,7 @@ class Link < ActiveRecord::Base
   end
 
   def shorten_url
-    shortened_url = @link.short
-    @link.update_attribute(:shortened_url, shortened_url)
+    shortened_url = short
+    self.update_attribute(:shortened_url, shortened_url)
   end
 end
