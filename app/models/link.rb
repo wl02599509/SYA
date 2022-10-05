@@ -1,7 +1,7 @@
 class Link < ActiveRecord::Base
   require 'securerandom'
   # before_validation :random_charts
-  after_commit :shorten_url
+  after_validation :shorten_url
 
   belongs_to :user
 
