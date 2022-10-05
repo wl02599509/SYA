@@ -3,26 +3,25 @@ class LinksController < ApplicationController
 
   def index
     @link = Link.new
-    @links = Link.where('user_id = ?', current_user.id)
+    @links = Link.where(user: current_user)
   end
 
   def create
-    if params[:link][:slug] == ""
-      Link.shorten(params[:link][:url], Link.random_charts, current_user.id)
-    else
-      Link.shorten(params[:link][:url], params[:link][:slug], current_user.id)
-    end
+    @link = Link.new(link_params)
+    @link.save
     redirect_to links_path
   end
 
   def destination
     @link = Link.find_by_slug(params[:slug]) 
+
     if @link.nil?
-      render 'errors/404', status: 404 
-    else
-      @link.update_attribute(:clicked, @link.clicked + 1)
-      redirect_to @link.url
+      render 'errors/404', status: 404
+      return
     end
+
+    Link.update_counter(@link.id, :clicked => 1)
+    redirect_to @link.url
   end
 
   def destroy
