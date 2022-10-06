@@ -1,6 +1,4 @@
 class Link < ActiveRecord::Base
-  require 'securerandom'
-  # before_validation :random_charts
   before_validation :random_charts
   after_validation :shorten_url
 
