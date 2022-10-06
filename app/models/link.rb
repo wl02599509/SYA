@@ -1,6 +1,7 @@
 class Link < ActiveRecord::Base
   require 'securerandom'
   # before_validation :random_charts
+  before_validation :random_charts
   after_validation :shorten_url
 
   belongs_to :user
@@ -15,9 +16,9 @@ class Link < ActiveRecord::Base
     Rails.application.routes.url_helpers.short_url(slug: self.slug)
   end
 
-  def self.random_charts
+  def random_charts
     if slug == nil || ""
-
+      self.slug = SecureRandom.uuid[3..7]
     end
   end
 
