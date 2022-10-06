@@ -1,6 +1,9 @@
 class Link < ActiveRecord::Base
-  require 'securerandom'
-  
+  before_validation :random_charts
+  after_validation :shorten_url
+
+  belongs_to :user
+
   validates_presence_of :url
   validates :url, format: URI::regexp(%w[http https])
   validates_uniqueness_of :slug
@@ -11,17 +14,14 @@ class Link < ActiveRecord::Base
     Rails.application.routes.url_helpers.short_url(slug: self.slug)
   end
 
-  def self.random_charts
-    SecureRandom.uuid[3..10]
+  def random_charts
+    if slug == nil || ""
+      self.slug = SecureRandom.uuid[3..7]
+    end
   end
 
-  def self.same_slug?(slug)
-    where("slug = ?", slug).present?
-  end
-
-  def self.shorten(url, slug, user_id)
-      @link = Link.create(url: url, slug: slug, user_id: user_id)
-      shortened_url = @link.short
-      @link.update_attribute(:shortened_url, shortened_url)
+  def shorten_url
+    shortened_url = short
+    self.update_attribute(:shortened_url, shortened_url)
   end
 end
