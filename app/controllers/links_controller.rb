@@ -7,7 +7,9 @@ class LinksController < ApplicationController
   end
 
   def show
-    find_link
+    @link = Link.new
+    @links = Link.where(user: current_user)
+    @the_link = Link.find(params[:id])
   end
 
   def create
