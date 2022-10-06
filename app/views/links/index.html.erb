@@ -1,8 +1,17 @@
 <div class="m-5">
+  <div>
+    <% if @link.errors.any? %>
+      <% @link.errors.full_messages.each do |message| %>
+      <div class="block ml-10">
+        <li><%= message %></li>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
   <%= form_for @link do |form| %>
-    URL: <%= form.text_field :url %>
-    Customize:  <%= form.text_field :slug %>
-    <button><%= form.submit %></button>
+    URL:       <%= form.text_field :url %>
+    Customize: <%= form.text_field :slug %>
+    <button>   <%= form.submit %>  </button>
   <% end %>
 </div>
 <h2 class="ml-5">Your Link</h2>
