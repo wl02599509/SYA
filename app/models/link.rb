@@ -20,10 +20,6 @@ class Link < ActiveRecord::Base
     end
   end
 
-  def self.shorten(url, slug)
-      @link = Link.create(url: url, slug: slug)
-  end
-
   def shorten_url
     shortened_url = short
     self.update_attribute(:shortened_url, shortened_url)

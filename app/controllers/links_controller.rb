@@ -6,10 +6,14 @@ class LinksController < ApplicationController
     @links = Link.where(user: current_user)
   end
 
+  def show
+    find_link
+  end
+
   def create
     @link = current_user.links.new(link_params)
     @link.save
-    redirect_to links_path
+    redirect_to links_path, notice: 'Successfully Shorten.'
   end
 
   def destination
@@ -27,7 +31,7 @@ class LinksController < ApplicationController
   def destroy
     find_link
     @link.destroy
-    redirect_to links_path
+    redirect_to links_path, notice: 'Successfully Deleted.'
   end
 
   private
