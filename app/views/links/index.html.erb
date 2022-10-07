@@ -2,7 +2,28 @@
   <%= render 'form', link: @link %>
 </div>
 <h2 class="ml-5">Your Link</h2>
-<div class="my-5 ml-5 bg-blue-200 w-96">
-  <%= render 'link_info', links: @links %>
-</div>
+<section class="flex" id="link-info-section">
+  <div class="my-5 ml-5 bg-blue-200 w-96">
+    <div>
+      <% @links.each do |links| %>
+        <div class="p-5 border-b-2" 
+            data-controller="link" 
+            data-action="click->link#show" 
+            data-created-at="<%= links.created_at.strftime('%B %d, %Y %T') %>"
+            data-user-email="<%= User.find(links.user_id).email %>"
+            data-url="<%= links.url %>"
+            data-clicked="<%= links.clicked %>"
+            >
+          <span class="block">
+            <%= links.created_at.strftime("%Y-%m-%d") %>
+          </span>
+          <span>
+            <%= links.shortened_url %>
+          </span>
+          <%= link_to 'details', link_path(links) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
 
