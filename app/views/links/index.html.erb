@@ -11,6 +11,7 @@
             data-action="click->link#show" 
             data-created-at="<%= links.created_at.strftime('%B %d, %Y %T') %>"
             data-user-email="<%= User.find(links.user_id).email %>"
+            data-shortened_url="<%= links.shortened_url %>"
             data-url="<%= links.url %>"
             data-clicked="<%= links.clicked %>"
             >
