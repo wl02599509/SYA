@@ -1,23 +1,11 @@
 <div class="m-5">
-  <%= form_for @link do |form| %>
-    URL: <%= form.text_field :url %>
-    Customize:  <%= form.text_field :slug %>
-    <button><%= form.submit %></button>
-  <% end %>
+  <%= render 'form', link: @link %>
 </div>
 <h2 class="ml-5">Your Link</h2>
 <section class="flex">
   <div>
     <div class="my-5 ml-5 bg-blue-200">
-      <div>
-        <% @links.each do |links| %>
-          <div class="p-5 border-b-2">
-            <span class="block"><%= links.created_at.strftime("%Y-%m-%d") %></span>
-            <span><%= links.shortened_url %></span>
-            <%= link_to 'details', link_path(links) %>
-          </div>
-        <% end %>
-      </div>
+      <%= render 'link_info', links: @links %>
     </div>
   </div>
   <div class="bg-pink-100 my-5 px-5">
