@@ -8,8 +8,8 @@
       <%= render 'link_info', links: @links %>
     </div>
   </div>
-  <div class="bg-pink-100 my-5 px-5">
-    <div class="mt-5">
+  <div class="bg-pink-100 my-5 p-5">
+    <div>
       <div class='py-3'>
         <span class='text-slate-500'><%= @the_link.created_at.strftime('%B %d, %Y %T') %> by </span>
         <span><%= User.find(@the_link.user_id).email %></span>

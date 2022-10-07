@@ -6,5 +6,5 @@
 <%= form_for link do |form| %>
   URL: <%= form.text_field :url %>
   Customize:  <%= form.text_field :slug %>
-  <button><%= form.submit %></button>
+  <button class="border-2 p-2 border-blue-300 hover:bg-blue-300"><%= form.submit %></button>
 <% end %>

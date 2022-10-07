@@ -30,7 +30,7 @@ class LinksController < ApplicationController
       return
     end
 
-    Link.update_counters(@link.id, :clicked => 1)
+    @link.increment!(:clicked, 1)
     redirect_to @link.url
   end
 
