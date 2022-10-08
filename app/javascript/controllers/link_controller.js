@@ -23,7 +23,7 @@ export default class extends Controller {
 
     const newDiv = document.createElement('div');
     const childDiv = document.createElement('div');
-    newDiv.className = "bg-pink-100 my-5 p-5";
+    newDiv.className = "bg-pink-100 my-5 p-5 w-8/12";
     newDiv.id = "show-first-layer";
 
     const createAtDiv = document.createElement('div');
