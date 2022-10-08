@@ -19,7 +19,7 @@
           <span class="block">
             <%= link.created_at.strftime("%Y-%m-%d") %>
           </span>
-          <span class="block my-2">
+          <span class="block my-2 break-words">
             <%= link.shortened_url %>
           </span>
           <%= link_to 'Edit', edit_link_path(link), :class => 'inline-block p-2 border-2 border-blue500 my-2' %>
