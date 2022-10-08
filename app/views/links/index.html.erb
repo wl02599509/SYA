@@ -6,7 +6,7 @@
   <div class="my-5 ml-5 bg-blue-200 w-96">
     <div>
       <% @links.each do |links| %>
-        <div class="p-5 border-b-2" 
+        <div class="p-5 border-b-2 hover:bg-blue-400" 
             data-controller="link" 
             data-action="click->link#show" 
             data-created-at="<%= links.created_at.strftime('%B %d, %Y %T') %>"
@@ -14,6 +14,7 @@
             data-shortened_url="<%= links.shortened_url %>"
             data-url="<%= links.url %>"
             data-clicked="<%= links.clicked %>"
+            data-link-id="<%= links.id %>"
             >
           <span class="block">
             <%= links.created_at.strftime("%Y-%m-%d") %>
