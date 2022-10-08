@@ -1,0 +1,9 @@
+<div>
+  <% links.each do |links| %>
+    <div class="p-5 border-b-2">
+      <span class="block"><%= links.created_at.strftime("%Y-%m-%d") %></span>
+      <span><%= links.shortened_url %></span>
+      <%= link_to 'details', link_path(links) %>
+    </div>
+  <% end %>
+</div>

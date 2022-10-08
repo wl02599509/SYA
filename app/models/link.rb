@@ -15,7 +15,7 @@ class Link < ActiveRecord::Base
   end
 
   def random_charts
-    if slug == nil || ""
+    if slug === "" || nil
       self.slug = SecureRandom.uuid[3..7]
     end
   end

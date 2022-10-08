@@ -1,0 +1,10 @@
+<% if link.errors.any? %>
+  <% link.errors.full_messages.each do |message| %>
+    <li class="ml-10"><%= message %></li>
+  <% end %>
+<% end %>
+<%= form_for link do |form| %>
+  URL: <%= form.text_field :url %>
+  Customize:  <%= form.text_field :slug %>
+  <button class="border-2 p-2 border-blue-300 hover:bg-blue-300"><%= form.submit %></button>
+<% end %>
