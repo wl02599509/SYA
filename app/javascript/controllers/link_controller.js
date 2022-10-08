@@ -47,7 +47,7 @@ export default class extends Controller {
     clickedDiv.className = "py-3";
 
     const deleteButton = document.createElement('button')
-    deleteButton.innerHTML = `<span data-controller='link'  data-action='click->link#delete' data-link-id='${linkId}' class='border-2 border-gray-500'>Delete</span>`;
+    deleteButton.innerHTML = `<span data-controller='link'  data-action='click->link#delete' data-link-id='${linkId}' class='border-2 border-gray-300 text-gray-300 hover:border-gray-500 hover:text-gray-500'>Delete</span>`;
 
     const createAtContent = document.createTextNode(createdAt + " By " + userEmail);
     const shortenUrlContent = document.createTextNode(shortenedUrl);
@@ -66,7 +66,6 @@ export default class extends Controller {
     childDiv.append(clickedDiv);
     childDiv.append(deleteButton);
 
-
     const justNewDive = document.querySelector("#show-first-layer");
 
     theSection.childNodes.forEach(function(elm){
@@ -77,19 +76,22 @@ export default class extends Controller {
     theSection.insertAdjacentElement("beforeend", newDiv);
   }
 
-
   delete(){
     const linkId = this.element.dataset.linkId
-    console.log(linkId)
-    Rails.ajax({
-            url: `http://localhost:3000/links/${linkId}`,
-            type: 'DELETE',
-            success:() => {
-              console.log('deleted!')
-            },
-            error: (err) => {
-              console.log(err)
-            },
-    });
+    if (confirm('Are you sure to delete?')) {
+      Rails.ajax({
+        url: `http://localhost:3000/links/${linkId}`,
+        type: 'DELETE',
+        success:() => {
+          console.log('deleted!')
+        },
+        error: (err) => {
+          console.log(err)
+        },
+      });
+      alert('Deleted.')
+    } else { 
+      alert('Canceled.')
+    }
   }
 }

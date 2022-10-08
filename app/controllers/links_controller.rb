@@ -1,15 +1,10 @@
 class LinksController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_link, only: %i[edit update destroy]
 
   def index
     @link = Link.new
     @links = Link.where(user: current_user)
-  end
-
-  def show
-    @link = Link.new
-    @links = Link.where(user: current_user)
-    @the_link = Link.find(params[:id])
   end
 
   def create
@@ -34,8 +29,17 @@ class LinksController < ApplicationController
     redirect_to @link.url
   end
 
+  def edit; end
+
+  def update
+    if @link.update(link_params)
+      redirect_to links_path, notice: 'Successfully Update.'
+    else
+      render :edit
+    end
+  end
+
   def destroy
-    find_link
     @link.destroy
     redirect_to links_path, notice: 'Successfully Deleted.'
   end

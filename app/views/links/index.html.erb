@@ -5,24 +5,24 @@
 <section class="flex" id="link-info-section">
   <div class="my-5 ml-5 bg-blue-200 w-96">
     <div>
-      <% @links.each do |links| %>
+      <% @links.each do |link| %>
         <div class="p-5 border-b-2 hover:bg-blue-400" 
             data-controller="link" 
             data-action="click->link#show" 
-            data-created-at="<%= links.created_at.strftime('%B %d, %Y %T') %>"
-            data-user-email="<%= User.find(links.user_id).email %>"
-            data-shortened_url="<%= links.shortened_url %>"
-            data-url="<%= links.url %>"
-            data-clicked="<%= links.clicked %>"
-            data-link-id="<%= links.id %>"
+            data-created-at="<%= link.created_at.strftime('%B %d, %Y %T') %>"
+            data-user-email="<%= User.find(link.user_id).email %>"
+            data-shortened_url="<%= link.shortened_url %>"
+            data-url="<%= link.url %>"
+            data-clicked="<%= link.clicked %>"
+            data-link-id="<%= link.id %>"
             >
           <span class="block">
-            <%= links.created_at.strftime("%Y-%m-%d") %>
+            <%= link.created_at.strftime("%Y-%m-%d") %>
           </span>
-          <span>
-            <%= links.shortened_url %>
+          <span class="block my-2">
+            <%= link.shortened_url %>
           </span>
-          <%= link_to 'details', link_path(links) %>
+          <%= link_to 'Edit', edit_link_path(link), :class => 'inline-block p-2 border-2 border-blue500 my-2' %>
         </div>
       <% end %>
     </div>
