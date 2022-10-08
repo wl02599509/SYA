@@ -23,7 +23,7 @@ export default class extends Controller {
 
     const newDiv = document.createElement('div');
     const childDiv = document.createElement('div');
-    newDiv.className = "bg-pink-100 my-5 p-5 w-8/12";
+    newDiv.className = "bg-pink-100 my-5 p-5 w-6/12";
     newDiv.id = "show-first-layer";
 
     const createAtDiv = document.createElement('div');
@@ -80,7 +80,7 @@ export default class extends Controller {
     const linkId = this.element.dataset.linkId
     if (confirm('Are you sure to delete?')) {
       Rails.ajax({
-        url: `http://localhost:3000/links/${linkId}`,
+        url: `https://mikeshortenyourlink.herokuapp.com/links/${linkId}`,
         type: 'DELETE',
         success:() => {
           console.log('deleted!')
