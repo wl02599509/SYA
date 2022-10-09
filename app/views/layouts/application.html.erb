@@ -3,6 +3,7 @@
   <head>
     <title>ShortenAddress</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbolinks-cache-control" content="no-cache">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
@@ -11,7 +12,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body <%= "data-no-turbolinks='true'".html_safe if controller_name=="links" && action_name=="destination" %>>
     <section class="w-full">
       <header class="text-lg">
         <nav class="relative flex items-center justify-between mx-auto py-5 bg-blue-200">
