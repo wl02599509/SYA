@@ -1,12 +1,12 @@
 # [SYL - Shorten Your Links 短網址服務平台](https://mikeshortenyourlink.herokuapp.com/)
-* * *
+
 # 開發
 
-本專案使用**Rails 6**進行開發。
+## 本專案使用**Rails 6**進行開發。
 
-前端設計：JavaScript、Stimulus、TailwindCSS
-後端框架：Devise
-* * *
+### 前端設計：JavaScript、Stimulus、TailwindCSS
+### 後端框架與套件：Devise
+
 # 使用
 
 1. [進入網站](https://mikeshortenyourlink.herokuapp.com/)
