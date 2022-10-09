@@ -32,16 +32,17 @@ export default class extends Controller {
     const shortenedUrlDiv = document.createElement('div');
     const shortenedUrlHref = document.createElement('a');
     shortenedUrlDiv.append(shortenedUrlHref)
-    shortenedUrlDiv.className = "my-6";
+    shortenedUrlDiv.className = "my-6 break-words";
     shortenedUrlHref.setAttribute('href', shortenedUrl);
-    shortenedUrlHref.className = "py-3 hover:bg-pink-400 py-3";
+    shortenedUrlHref.setAttribute('data-turbolinks', 'false');
+    shortenedUrlHref.className = "py-3 hover:bg-pink-400 py-3 break-words";
 
     const urlDiv = document.createElement('div');
     const urlHref = document.createElement('a');
     urlDiv.append(urlHref)
     urlDiv.className = "my-6";
     urlHref.setAttribute('href', url);
-    urlHref.className = "py-3 hover:bg-pink-400 py-3";
+    urlHref.className = "hover:bg-pink-400 hover:py-1 break-words";
 
     const clickedDiv = document.createElement('div');
     clickedDiv.className = "py-3";
