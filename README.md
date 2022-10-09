@@ -2,10 +2,9 @@
 
 # 開發
 
-## 本專案使用**Rails 6**進行開發。
-
-### 前端設計：JavaScript、Stimulus、TailwindCSS
-### 後端框架與套件：Devise
+- 本專案使用 **Rails 6** 進行開發
+- 前端設計：JavaScript、Stimulus、TailwindCSS
+- 後端框架與套件：[Devise](https://github.com/heartcombo/devise)
 
 # 使用
 
